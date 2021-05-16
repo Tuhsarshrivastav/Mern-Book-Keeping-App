@@ -1,0 +1,14 @@
+{
+  "name": "mern-book-keeping-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "author": "tushar",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
