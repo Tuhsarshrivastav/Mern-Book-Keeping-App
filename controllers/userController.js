@@ -14,6 +14,21 @@ module.exports.register = asyncHandler(async (req, res) => {
   });
   res.send(userCreated);
 });
-module.exports.login = (req, res) => {
-  res.send("login api");
-};
+
+module.exports.login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (user) {
+    res.status(200);
+    res.json({
+      _id: user._id,
+      name: user.name,
+      password: user.password,
+      email: user.email,
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid creedentials ");
+  }
+});

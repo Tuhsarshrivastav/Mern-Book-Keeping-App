@@ -1,17 +1,19 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const app = express();
+const error = require("./middlewares/ErrorMiddleware");
 const dbConnected = require("./config/dbConnect");
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require("./routes/userRoutes");
 //Connected to MongoDb
 dbConnected();
 
-//middlewares
+//Passing body data
 app.use(express.json());
 
 //Routes
-//Users routes
 app.use("/", userRoutes);
+
+// Error handler
+app.use(error.errorMiddlewareHandler);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
