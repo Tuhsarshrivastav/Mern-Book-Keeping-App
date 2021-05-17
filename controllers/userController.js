@@ -12,13 +12,15 @@ module.exports.register = asyncHandler(async (req, res) => {
     email,
     password,
   });
-  res.json({
-    _id: userCreated._id,
-    name: userCreated.name,
-    password: userCreated.password,
-    email: userCreated.email,
-    token: genrateToken(userCreated._id),
-  });
+  if (userCreated) {
+    res.json({
+      _id: userCreated._id,
+      name: userCreated.name,
+      password: userCreated.password,
+      email: userCreated.email,
+      token: genrateToken(userCreated._id),
+    });
+  }
 });
 
 module.exports.login = asyncHandler(async (req, res) => {

@@ -3,6 +3,7 @@ const app = express();
 const error = require("./middlewares/ErrorMiddleware");
 const dbConnected = require("./config/dbConnect");
 const userRoutes = require("./routes/userRoutes");
+const booksRoutes = require("./routes/booksRoutes");
 //Connected to MongoDb
 dbConnected();
 
@@ -10,7 +11,8 @@ dbConnected();
 app.use(express.json());
 
 //Routes
-app.use("/", userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api", booksRoutes);
 
 // Error handler
 app.use(error.errorMiddlewareHandler);
