@@ -9,7 +9,9 @@
   "author": "tushar",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.12.9"
   }
 }
