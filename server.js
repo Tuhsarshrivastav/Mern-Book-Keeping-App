@@ -1,23 +1,27 @@
-const express = require("express");
+const express = require('express');
+const dotenv = require('dotenv');
+const error = require('./middlewares/errorMiddlewareHandler');
+const usersRoute = require('./routes/usersRoute');
+const bookRouter = require('./routes/bookRoutes');
+dotenv.config();
+require('./config/dbConnect')();
+
 const app = express();
-const error = require("./middlewares/ErrorMiddleware");
-const dbConnected = require("./config/dbConnect");
-const userRoutes = require("./routes/userRoutes");
-const booksRoutes = require("./routes/booksRoutes");
-//Connected to MongoDb
-dbConnected();
 
 //Passing body data
 app.use(express.json());
 
 //Routes
-app.use("/api/users", userRoutes);
-app.use("/api", booksRoutes);
+//Users
+app.use('/api/users', usersRoute);
+//Books
+app.use('/api/books', bookRouter);
 
-// Error handler
+//Error middleware
 app.use(error.errorMiddlewareHandler);
 
-const PORT = process.env.PORT || 4000;
+//Server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Server is up and runing ${PORT}`);
 });

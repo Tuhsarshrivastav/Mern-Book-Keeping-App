@@ -1,5 +1,7 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+//Schema
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -8,16 +10,16 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
+    required: true,
   },
 });
 
-//hashpassword
-UserSchema.pre("save", async function (next) {
-  //We only want to do this if the password is sent or modified, this is because when a user later update their password this will run and the user cannot login
-  if (!this.isModified("password")) {
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
     next();
   }
   const salt = await bcrypt.genSalt(10);
@@ -25,12 +27,11 @@ UserSchema.pre("save", async function (next) {
   next();
 });
 
-//Verify password for login
-//Methods: Apply to an instance of this model
+//Verify password
 UserSchema.methods.isPasswordMatch = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
