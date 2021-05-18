@@ -9729,3 +9729,13 @@ a.text-dark:hover {
 .alert-light a:not(.btn) {
   color: #002b36;
 }
+* {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 700px) {
+  * {
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+}

@@ -17,7 +17,7 @@ const RegisterUser = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/dashboard');
+      history.push('/books');
     }
   }, [userInfo]);
 
