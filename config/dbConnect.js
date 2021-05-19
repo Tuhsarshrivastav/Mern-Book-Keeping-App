@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dbConnect = () => {
   //connect DB
   mongoose
-    .connect("mongodb+srv://mern:mern@cluster0.opvaq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    .connect("", {
       useFindAndModify: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
